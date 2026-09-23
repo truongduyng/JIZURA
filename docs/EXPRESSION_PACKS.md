@@ -22,7 +22,7 @@ J.register('layout', 'myKey', { name: '日本語名', tags: ['pop', 'graphic'], 
 })();
 ```
 `J.register(group, key, def, pack)` adds the entry to the registry and to the order array. Keys must be unique camelCase and
-must not collide with existing keys (check `J.order(group)`). `name` (Japanese, short, 2–7 chars) is shown in the UI.
+must not collide with existing keys (check `J.order(group)`). `name` (Japanese, short, 2–7 chars) is shown in the UI. To translate it for the English / Vietnamese UI, add `'日本語名': ['English', 'Tiếng Việt']` to `J.I18N_NAMES` in `src/11s_i18n_names.js` (untranslated names fall back to Japanese).
 `tags` = moods it suits, any of: `glitch calm pop graphic editorial emotional`. `w` = base pick weight (1 normal; 0.4–0.7 for
 gimmicky / very specific looks; 1.2–1.5 for strong general-purpose ones).
 
