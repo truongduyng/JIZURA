@@ -126,7 +126,7 @@
             <label class="field"><span data-i18n="res">解像度</span><select id="eRes"><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">4K</option></select></label>
             <label class="field">fps<select id="eFps"><option>24</option><option>30</option><option>60</option></select></label>
           </div>
-          <div class="outbtns"><button id="eMP4" class="primary" data-i18n="mp4">MP4 を書き出す</button></div>
+          <div class="outbtns"><button id="eMP4" class="primary" data-i18n="mp4">MP4 を書き出す</button><button id="eGIF" data-i18n="gif">GIF アニメ</button></div>
           <button class="terms-open linkish" data-i18n="terms.link1">書き出した動画の権利について</button>
           <div class="exp-box" hidden>
             <div class="progress"><i class="exp-bar"></i></div>
@@ -198,6 +198,13 @@
           <button id="btnPNG" data-i18n="png">連番PNG（ZIP）</button>
           <button id="btnPNGA" data-i18n="pnga">透過PNG（ZIP・背景なし）</button>
         </div>
+        <h3 data-i18n="gifH">GIF アニメ</h3>
+        <div class="fields">
+          <label class="field"><span data-i18n="gifSize">GIF の大きさ</span><select id="outGifSize"><option value="320">320px</option><option value="480">480px</option><option value="640">640px</option><option value="800">800px</option></select></label>
+          <label class="field"><span data-i18n="gifFps">GIF の fps</span><select id="outGifFps"><option>10</option><option>12</option><option>15</option><option>20</option><option>25</option></select></label>
+        </div>
+        <div class="outbtns"><button id="btnGIF" data-i18n="gif">GIF アニメ</button></div>
+        <p class="note" data-i18n="gif.note">GIF は音声なし・256色です。SNS やチャットに貼るプレビュー向け（大きさと fps を上げるとファイルが重くなります）。</p>
         <div class="exp-box" hidden style="margin-top:12px">
           <div class="progress"><i class="exp-bar"></i></div>
           <div class="row" style="justify-content:space-between;margin-top:6px"><span class="exp-text muted mono">—</span><button class="exp-cancel ghost small" data-i18n="cancel">中止</button></div>

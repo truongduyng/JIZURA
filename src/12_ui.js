@@ -547,6 +547,7 @@ function syncOut() {
   $('outAspect').value = S.project.aspect; $('outRes').value = String(S.project.res); $('outFps').value = String(S.project.fps);
   $('eAspect').value = S.project.aspect; $('eRes').value = String(S.project.res); $('eFps').value = String(S.project.fps);
   $('outQuality').value = S.project.quality || 'high'; $('outAudio').checked = S.project.includeAudio !== false;
+  $('outGifSize').value = String(S.project.gifSize || 480); $('outGifFps').value = String(S.project.gifFps || 15);
 }
 async function codecNote() {
   const [w, h] = J.outputSize(S.project);
@@ -555,7 +556,7 @@ async function codecNote() {
   $('btnMP4').disabled = !vc; $('eMP4').disabled = !vc;
   $('eMP4').title = vc ? '' : J.t('codec.noneTitle');
 }
-const EXP_BTNS = ['btnMP4', 'btnPNG', 'btnPNGA', 'eMP4'];
+const EXP_BTNS = ['btnMP4', 'btnPNG', 'btnPNGA', 'btnGIF', 'eMP4', 'eGIF'];
 function baseName() { return ((S.project.title || 'jizura').replace(/[\\/:*?"<>|]+/g, '_').slice(0, 60) || 'jizura'); }
 async function runExport(kind) {
   if (S.exporting) return;
@@ -575,6 +576,11 @@ async function runExport(kind) {
       const r = await J.exportMP4({ plan: S.plan, project: S.project, audio: S.project.includeAudio !== false ? S.audio : null, quality: S.project.quality || 'high', onProgress, signal: ac.signal });
       txt.textContent = J.t('exp.doneMp4', { mb: (r.blob.size / 1048576).toFixed(1), codec: r.codec, audio: r.audio ? ' + ' + r.audio.toUpperCase() : '', sec: ((performance.now() - t0) / 1000).toFixed(0) });
       const res = await J.saveFile(baseName() + '.mp4', r.blob);
+      if (res === 'declined') txt.textContent += J.t('exp.declined');
+    } else if (kind === 'gif') {
+      const r = await J.exportGIF({ plan: S.plan, project: S.project, size: S.project.gifSize || 480, fps: S.project.gifFps || 15, onProgress, signal: ac.signal });
+      txt.textContent = J.t('exp.doneGif', { mb: (r.blob.size / 1048576).toFixed(1), w: r.width, h: r.height, sec: ((performance.now() - t0) / 1000).toFixed(0) });
+      const res = await J.saveFile(baseName() + '.gif', r.blob);
       if (res === 'declined') txt.textContent += J.t('exp.declined');
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: S.project, transparent: kind === 'pnga', onProgress, signal: ac.signal });
@@ -726,6 +732,10 @@ function bind() {
   $('btnMP4').addEventListener('click', () => runExport('mp4'));
   $('btnPNG').addEventListener('click', () => runExport('png'));
   $('btnPNGA').addEventListener('click', () => runExport('pnga'));
+  $('outGifSize').addEventListener('change', e => { S.project.gifSize = +e.target.value; autosave(); });
+  $('outGifFps').addEventListener('change', e => { S.project.gifFps = +e.target.value; autosave(); });
+  $('btnGIF').addEventListener('click', () => runExport('gif'));
+  $('eGIF').addEventListener('click', () => runExport('gif'));
   document.querySelectorAll('.exp-cancel').forEach(b => b.addEventListener('click', () => { if (S.exporting) S.exporting.abort(); }));
   $('eMP4').addEventListener('click', () => runExport('mp4'));
   // かんたんモード
