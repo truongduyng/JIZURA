@@ -11,7 +11,7 @@ Nhập lời bài hát vào, ứng dụng trình duyệt này sẽ ghép các ki
 - Nút Ngẫu nhiên (phím `R`): mỗi lần nhấn sẽ đổi toàn bộ phong cách, không khí, chuyển động, bảng màu và bố cục.
 - Tỉ lệ khung 16:9 / 9:16 / 4:3 / 3:4 / 1:1 / 4:5 / 21:9, từ 720p đến 4K, 24 / 30 / 60fps.
 - Khi nạp bài hát, ứng dụng dò nhịp và căn các cảnh theo nhịp. Cũng có thể đồng bộ thủ công bằng cách chạm.
-- Xuất MP4 (kèm nhạc), chuỗi PNG, PNG trong suốt. Có thể xuất cả dữ liệu bố cục (JSON) để chỉnh sửa trong After Effects.
+- Xuất MP4 (kèm nhạc), GIF động, chuỗi PNG, PNG trong suốt. Có thể xuất cả dữ liệu bố cục (JSON) để chỉnh sửa trong After Effects.
 
 | Tệp | Nội dung |
 |---|---|
@@ -23,7 +23,7 @@ Nhập lời bài hát vào, ứng dụng trình duyệt này sẽ ghép các ki
 
 ### Môi trường hoạt động
 
-- **Xuất MP4**: cần trình duyệt hỗ trợ WebCodecs (khuyên dùng Chrome / Edge. Safari 16.4 trở lên và Firefox 130 trở lên cũng hỗ trợ WebCodecs, nhưng có xuất được H.264 hay không còn tùy trình duyệt và hệ điều hành). Ở môi trường không hỗ trợ, vẫn dùng được xem trước và xuất chuỗi PNG.
+- **Xuất MP4**: cần trình duyệt hỗ trợ WebCodecs (khuyên dùng Chrome / Edge. Safari 16.4 trở lên và Firefox 130 trở lên cũng hỗ trợ WebCodecs, nhưng có xuất được H.264 hay không còn tùy trình duyệt và hệ điều hành). Ở môi trường không hỗ trợ, vẫn dùng được xem trước và xuất GIF, chuỗi PNG.
 - Phông chữ được tải từ Google Fonts, chỉ tải những phông cần dùng vào lúc cần (khi ngoại tuyến sẽ dùng phông có sẵn trên máy thay thế).
 
 ---
@@ -101,6 +101,7 @@ Nằm ở "Chi tiết" → tab "Phong cách" → "Màu nhấn & màu lệch".
    - MP4 (H.264 trên Chrome / Edge; có thể kèm bài hát)
    - Chuỗi PNG (ZIP)
    - PNG trong suốt (ZIP, không nền; dùng để ghép trong AE…)
+   - GIF động (không âm thanh, 256 màu. Chọn được kích thước (cạnh dài 320–800px) và fps (10–25). Phù hợp làm bản xem trước để đăng mạng xã hội hoặc gửi trong chat)
    - Tỉ lệ khung chọn được 16:9 / 9:16 / 4:3 / 3:4 / 1:1 / 4:5 / 21:9, độ phân giải từ 720p đến 4K, tốc độ khung hình 24 / 30 / 60fps (chi tiết ở mục "Xuất ở 24 / 30 / 60fps" bên dưới).
 7. **Xuất cho AE**: xuất bố cục hiện tại (thời gian, bố cục, hiệu ứng, bảng màu) ra JSON. Khi nạp vào bảng AE, bạn sẽ có composition giữ nguyên bố cục đó và chỉnh sửa được.
 
